@@ -1,10 +1,27 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 
-options = webdriver.FirefoxOptions()
-options.add_argument("-headless")
+import unittest
 
-browser = webdriver.Firefox(options=options)
-browser.get('http://127.0.0.1:8000')
 
-assert 'The install worked successfully! Congratulations!' in browser.title
+class NewVisitorTest(unittest.TestCase):
+    """Тест нового посетителя"""
+
+    def setUp(self):
+        """Установка"""
+        options = webdriver.FirefoxOptions()
+        options.add_argument("-headless")
+        self.browser = webdriver.Firefox(options=options)
+
+    def tearDown(self):
+        """Демонтаж"""
+        self.browser.quit()
+
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        '''тест: можно начать список и получить его позже'''
+        self.browser.get('http://localhost:8000')
+        self.assertIn('To-Do', self.browser.title)
+        self.fail('Закончить тест!')
+
+
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
