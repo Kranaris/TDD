@@ -35,7 +35,7 @@ class HomePageTest(TestCase):
         self.assertEqual(Item.objects.count(), 0)
 
     def test_displays_all_list_items(self):
-        '''тест: отображаются все элементы списка'''
+        """тест: отображаются все элементы списка"""
         Item.objects.create(text='itemey 1')
         Item.objects.create(text='itemey 2')
 
