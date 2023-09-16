@@ -1,9 +1,11 @@
 from django.db import models
 
 
+class List(models.Model):
+    pass
+
+
 class Item(models.Model):
     """элемент списка"""
     text = models.TextField(default='')
-
-class List(models.Model):
-    pass
+    list = models.ForeignKey(List, default=None, on_delete=models.CASCADE)
