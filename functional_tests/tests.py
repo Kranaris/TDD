@@ -13,8 +13,7 @@ class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         """Установка"""
         self.options = webdriver.ChromeOptions()
-        self.options.add_argument("-headless")
-        self.browser = webdriver.Chrome(options=self.options)
+        self.browser = webdriver.Chrome()
 
     def tearDown(self):
         """Демонтаж"""
@@ -61,8 +60,6 @@ class NewVisitorTest(LiveServerTestCase):
         # Страница снова обновляется и теперь показывает оба элемента ее списка
         self.wait_for_row_in_list_table('1: Купить павлиньи перья')
         self.wait_for_row_in_list_table('2: Сделать мушку из павлиньих перьев')
-
-        self.fail('Закончить тест!')
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
         """тест: многочисленные пользователи могут начать списки по разным url"""
