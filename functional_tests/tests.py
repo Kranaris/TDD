@@ -4,6 +4,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+import os
 
 MAX_WAIT = 10
 
@@ -16,6 +17,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--headless")
         self.browser = webdriver.Chrome(options=self.options)
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
 
     def tearDown(self):
         """Демонтаж"""
