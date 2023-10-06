@@ -3,7 +3,7 @@ from fabric.api import env, local, run
 import random
 
 
-REPO_URL = 'https://github.com/hjwp/book-example.git'
+REPO_URL = 'https://github.com/NikitaKaravaev25/TDD.git'
 
 def deploy():
     site_folder = '/home/%s/sites/%s' % (env.user, env.host)
@@ -17,7 +17,7 @@ def deploy():
 
 
 def _create_directory_structure_if_necessary(site_folder):
-    for subfolder in ('database', 'static', 'virtualenv', 'source'):
+    for subfolder in ('database', 'static', 'venv', 'source'):
         run('mkdir -p %s/%s' % (site_folder, subfolder))
 
 
@@ -46,7 +46,7 @@ def _update_settings(source_folder, site_name):
 
 
 def _update_virtualenv(source_folder):
-    virtualenv_folder = source_folder + '/../virtualenv'
+    virtualenv_folder = source_folder + '/../venv'
     if not exists(virtualenv_folder + '/bin/pip'):
         run('python3 -m venv %s' % (virtualenv_folder,))
     run('%s/bin/pip install -r %s/requirements.txt' % (
@@ -61,6 +61,6 @@ def _update_static_files(source_folder):
 
 
 def _update_database(source_folder):
-    run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput' % (
+    run('cd %s && ../venv/bin/python3 manage.py migrate --noinput' % (
         source_folder,
     ))
