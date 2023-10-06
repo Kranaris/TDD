@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['nikitakaravaev.ru', 'www.nikitakaravaev.ru', 'localhost', '127
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
